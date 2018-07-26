@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.andromeda.sdm.controllers.BaseController">
+   <children>
+      <MenuBar layoutX="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <VBox layoutX="7.0" layoutY="29.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+         <children>
+            <Pane prefHeight="76.0" prefWidth="700.0">
+               <children>
+                  <TextField fx:id="urlTextfield" layoutX="39.0" layoutY="25.0" prefHeight="26.0" prefWidth="463.0" />
+                  <Button fx:id="addDownload" layoutX="541.0" layoutY="23.0" mnemonicParsing="false" onAction="#onClickAddButton" prefHeight="26.0" prefWidth="122.0" text="Add Download" />
+               </children>
+            </Pane>
+            <Pane prefHeight="274.0" prefWidth="700.0">
+               <children>
+                  <TableView fx:id="downloadTable" prefHeight="274.0" prefWidth="700.0">
+                    <columns>
+                      <TableColumn maxWidth="400.0" minWidth="-Infinity" prefWidth="400.0" resizable="false" text="URL" />
+                      <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Size" />
+                        <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Pogress" />
+                        <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Status" />
+                    </columns>
+                  </TableView>
+               </children>
+            </Pane>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="pauseButton" mnemonicParsing="false" onAction="#onClickPuseButton" text="Pause">
+                     <HBox.margin>
+                        <Insets left="80.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="resumeButton" mnemonicParsing="false" onAction="#onClickResumeButton" text="Resume">
+                     <HBox.margin>
+                        <Insets left="100.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onClickCancelButton" text="Cancel">
+                     <HBox.margin>
+                        <Insets left="100.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="clearButton" mnemonicParsing="false" onAction="#onClickClearButton" text="Clear">
+                     <HBox.margin>
+                        <Insets left="100.0" top="35.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

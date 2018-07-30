@@ -13,7 +13,7 @@ public class Download extends Observable implements Runnable
 	private static final int MAX_BUFFER_SIZE = 1024;
 
 	// These are the status names.
-	public static String STATUSES[] = { "Downloading", "Paused", "Complete", "Cancelled", "Error" };
+	public static String STATUSES[] = {"Connecting", "Downloading", "Paused", "Complete", "Cancelled", "Error" };
 
 	private URL url; // download URL
 	private int size; // size of file in bytes
@@ -21,11 +21,12 @@ public class Download extends Observable implements Runnable
 	private int status; // current status of download
 
 	// Statues code.
-	public static int DOWNLOADING = 0;
-	public static int PAUSED = 0;
-	public static int COMPLETE = 0;
-	public static int CANCELLED = 0;
-	public static int ERROR = 0;
+	public static int CONNECTING = 0;
+	public static int DOWNLOADING = 1;
+	public static int PAUSED = 2;
+	public static int COMPLETE = 3;
+	public static int CANCELLED = 4;
+	public static int ERROR = 5;
 
 	// Constructor
 	public Download(URL url)
@@ -33,31 +34,33 @@ public class Download extends Observable implements Runnable
 		this.url = url;
 		this.size = -1;
 		this.downloaded = 0;
-		this.status = DOWNLOADING;
+		this.status = CONNECTING;
 
 		// Begin the download.
 		download();
 	}
 
-	public URL getUrl()
+	public String getURL()
 	{
-		return url;
+		return url.toString();
 	}
 
-	public int getSize()
+	public String getSize()
 	{
-		return size;
+		if(size != -1)
+			return ((float)size/(1024*1024))+" MB";
+		return "0 MB";
 	}
 
-	public int getStatus()
+	public String getStatus()
 	{
-		return status;
+		return STATUSES[status];
 	}
 
 	// Get download's progress
-	public float getProgress()
+	public String getProgress()
 	{
-		return ((float) downloaded / size) * 100;
+		return (Math.abs((float) downloaded / size)) * 100+"%";
 	}
 
 	// Pause this download
@@ -155,9 +158,10 @@ public class Download extends Observable implements Runnable
 			}
 
 			// Open file and seek to the end of it.
-			file = new RandomAccessFile("/home/shivam/Desktop/"+getFileName(url), "rw");
+			file = new RandomAccessFile("/mnt/1EC7DE9916393324/"+getFileName(url), "rw");
 			file.seek(downloaded);
 			stream = connection.getInputStream();
+			status = DOWNLOADING;
 			while (status == DOWNLOADING)
 			{
 				/*

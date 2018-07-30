@@ -36,10 +36,10 @@
                <children>
                   <TableView fx:id="downloadTable" prefHeight="274.0" prefWidth="700.0">
                     <columns>
-                      <TableColumn maxWidth="400.0" minWidth="-Infinity" prefWidth="400.0" resizable="false" text="URL" />
-                      <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Size" />
-                        <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Pogress" />
-                        <TableColumn maxWidth="100.0" minWidth="-Infinity" prefWidth="100.0" resizable="false" text="Status" />
+                      <TableColumn fx:id="urlColumn" maxWidth="-1.0" minWidth="393.0" prefWidth="393.0" resizable="false" text="URL" />
+                      <TableColumn fx:id="sizeColumn" maxWidth="-1.0" minWidth="107.0" prefWidth="107.0" resizable="false" text="Size" />
+                        <TableColumn fx:id="progressColumn" maxWidth="-1.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Pogress" />
+                        <TableColumn fx:id="statusColumn" maxWidth="-1.0" minWidth="100.0" prefWidth="100.0" resizable="false" text="Status" />
                     </columns>
                   </TableView>
                </children>
